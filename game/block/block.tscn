@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceoqe83vib611"]
+
+[ext_resource type="Script" path="res://game/block/block.gd" id="1_fs5ep"]
+[ext_resource type="PackedScene" uid="uid://iwoh7sfejpxi" path="res://game/block/cell/cell.tscn" id="2_2opke"]
+[ext_resource type="Script" path="res://game/block/cell/cell_resource.gd" id="3_45m71"]
+
+[sub_resource type="Resource" id="Resource_3fr05"]
+script = ExtResource("3_45m71")
+status = 0
+value = 0
+hints = Array[bool]([])
+fixed = true
+
+[sub_resource type="Resource" id="Resource_my3uw"]
+script = ExtResource("3_45m71")
+status = 0
+value = 1
+hints = Array[bool]([])
+fixed = true
+
+[node name="Block" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+script = ExtResource("1_fs5ep")
+
+[node name="1" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 66.0
+offset_bottom = 66.0
+grow_horizontal = 1
+grow_vertical = 1
+cell = SubResource("Resource_3fr05")
+
+[node name="2" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -33.0
+offset_right = 33.0
+offset_bottom = 66.0
+grow_vertical = 1
+
+[node name="3" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -66.0
+offset_right = 0.0
+offset_bottom = 66.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="4" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 66.0
+offset_bottom = 33.0
+grow_horizontal = 1
+
+[node name="5" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -33.0
+offset_right = 33.0
+offset_bottom = 33.0
+
+[node name="6" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -33.0
+offset_right = 0.0
+offset_bottom = 33.0
+grow_horizontal = 0
+
+[node name="7" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -66.0
+offset_right = 66.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="8" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = -66.0
+offset_right = 33.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="9" parent="." instance=ExtResource("2_2opke")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -66.0
+offset_top = -66.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+cell = SubResource("Resource_my3uw")

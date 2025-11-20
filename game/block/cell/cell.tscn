@@ -1,0 +1,460 @@
+[gd_scene load_steps=6 format=3 uid="uid://iwoh7sfejpxi"]
+
+[ext_resource type="Script" path="res://game/block/cell/cell.gd" id="1_b71jm"]
+[ext_resource type="Texture2D" uid="uid://c7g6rk6wjixuf" path="res://game/block/cell/close.png" id="3_ibocw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5hae5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yhqws"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8tdn1"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Cell" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1086.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b71jm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5hae5")
+text = "1"
+label_settings = SubResource("LabelSettings_yhqws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Hints" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="1" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.5
+offset_right = 16.5
+grow_vertical = 0
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_right = 16.5
+offset_bottom = 16.5
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="ReferenceRect" parent="Hints"]
+layout_mode = 0
+offset_top = 16.5
+offset_right = 16.5
+offset_bottom = 33.0
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_right = -16.5
+offset_bottom = 16.5
+grow_horizontal = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -49.5
+offset_right = -33.0
+offset_bottom = 16.5
+grow_horizontal = 0
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/5"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -33.0
+offset_right = -16.5
+offset_bottom = -16.5
+grow_horizontal = 0
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/6"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="7" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.5
+offset_top = -66.0
+offset_bottom = -49.5
+grow_horizontal = 0
+grow_vertical = 0
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/7"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="8" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 16.5
+offset_top = -49.5
+offset_right = 33.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/8"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="9" type="ReferenceRect" parent="Hints"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.5
+offset_right = 33.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Hints/9"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_8tdn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 139.0
+offset_top = 116.0
+offset_right = 389.0
+offset_bottom = 366.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.712129, 0.712129, 0.712129, 1)
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 73.0
+offset_top = 200.0
+offset_right = 171.0
+offset_bottom = 243.0
+theme_override_font_sizes/font_size = 20
+text = "11"
+alignment = 1
+max_length = 4
+virtual_keyboard_type = 2
+clear_button_enabled = true
+caret_blink = true
+
+[node name="closeBtn" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = -1.0
+offset_right = 78.0
+offset_bottom = 113.0
+grow_horizontal = 0
+scale = Vector2(0.3, 0.3)
+icon = ExtResource("3_ibocw")
+flat = true
+
+[node name="hintTogglers" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_top = 33.0
+offset_right = 250.0
+offset_bottom = 191.0
+
+[node name="t1" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 109.0
+offset_right = 56.0
+offset_bottom = 167.0
+theme_override_font_sizes/font_size = 36
+text = "1"
+
+[node name="t2" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 48.0
+offset_right = 56.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 36
+text = "2"
+
+[node name="t3" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 60.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 36
+text = "3"
+
+[node name="t4" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = -30.0
+offset_right = 123.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 36
+text = "4"
+
+[node name="t5" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = -28.0
+offset_right = 189.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 36
+text = "5"
+
+[node name="t6" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 17.0
+offset_right = 243.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 36
+text = "6"
+
+[node name="t7" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 84.0
+offset_right = 242.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 36
+text = "7"
+
+[node name="t8" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 107.0
+offset_right = 182.0
+offset_bottom = 165.0
+theme_override_font_sizes/font_size = 36
+text = "8"
+
+[node name="t9" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 106.0
+offset_right = 120.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 36
+text = "9"
+
+[node name="clear" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 97.5
+offset_right = 153.0
+offset_bottom = 128.5
+text = "Clear"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="visibility_changed" from="CanvasLayer" to="." method="_on_canvas_layer_visibility_changed"]
+[connection signal="focus_exited" from="CanvasLayer/Control/ColorRect" to="." method="_on_color_rect_focus_exited"]
+[connection signal="text_changed" from="CanvasLayer/Control/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="CanvasLayer/Control/closeBtn" to="." method="_on_close_btn_pressed"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t1" to="." method="_on_t_1_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t2" to="." method="_on_t_2_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t3" to="." method="_on_t_3_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t4" to="." method="_on_t_4_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t5" to="." method="_on_t_5_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t6" to="." method="_on_t_6_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t7" to="." method="_on_t_7_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t8" to="." method="_on_t_8_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t9" to="." method="_on_t_9_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/clear" to="." method="_on_clear_pressed"]
