@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://iwoh7sfejpxi"]
+[gd_scene load_steps=8 format=3 uid="uid://iwoh7sfejpxi"]
 
 [ext_resource type="Script" path="res://game/block/cell/cell.gd" id="1_b71jm"]
-[ext_resource type="Texture2D" uid="uid://c7g6rk6wjixuf" path="res://game/block/cell/close.png" id="3_ibocw"]
+[ext_resource type="Script" path="res://game/block/cell/cell_resource.gd" id="2_y7d3b"]
+
+[sub_resource type="Resource" id="Resource_h3bah"]
+script = ExtResource("2_y7d3b")
+status = 0
+value = 0
+hints = Array[bool]([false, false, false, false, false, false, false, false, false])
+fixed = false
+block = 0
+cell = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5hae5"]
 
@@ -12,16 +21,24 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_8tdn1"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8w1r6"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
 [node name="Cell" type="Control"]
+custom_minimum_size = Vector2(67, 67)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1086.0
-offset_bottom = -582.0
+offset_left = 36.0
+offset_top = 25.0
+offset_right = -977.0
+offset_bottom = -2188.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b71jm")
+cell = SubResource("Resource_h3bah")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -305,10 +322,9 @@ transform = Transform2D(2, 0, 0, 2, 0, 0)
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 139.0
-offset_top = 116.0
-offset_right = 389.0
-offset_bottom = 366.0
+offset_top = 866.5
+offset_right = 539.0
+offset_bottom = 1138.5
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -334,120 +350,217 @@ virtual_keyboard_type = 2
 clear_button_enabled = true
 caret_blink = true
 
-[node name="closeBtn" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -32.0
-offset_top = -1.0
-offset_right = 78.0
-offset_bottom = 113.0
-grow_horizontal = 0
-scale = Vector2(0.3, 0.3)
-icon = ExtResource("3_ibocw")
-flat = true
-
 [node name="hintTogglers" type="Control" parent="CanvasLayer/Control"]
-anchors_preset = 0
-offset_top = 33.0
-offset_right = 250.0
-offset_bottom = 191.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="t1" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 109.0
-offset_right = 56.0
-offset_bottom = 167.0
+offset_left = 9.5
+offset_top = 40.0
+offset_right = 59.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "1"
 
 [node name="t2" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 48.0
-offset_right = 56.0
-offset_bottom = 106.0
+offset_left = 59.5
+offset_top = 40.0
+offset_right = 109.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "2"
 
 [node name="t3" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = -12.0
-offset_right = 60.0
-offset_bottom = 46.0
+offset_left = 109.5
+offset_top = 40.0
+offset_right = 159.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "3"
 
 [node name="t4" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = -30.0
-offset_right = 123.0
-offset_bottom = 28.0
+offset_left = 159.5
+offset_top = 40.0
+offset_right = 209.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "4"
 
 [node name="t5" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 139.0
-offset_top = -28.0
-offset_right = 189.0
-offset_bottom = 30.0
+offset_left = 209.5
+offset_top = 40.0
+offset_right = 259.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "5"
 
 [node name="t6" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 193.0
-offset_top = 17.0
-offset_right = 243.0
-offset_bottom = 75.0
+offset_left = 259.5
+offset_top = 40.0
+offset_right = 309.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "6"
 
 [node name="t7" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 84.0
-offset_right = 242.0
-offset_bottom = 142.0
+offset_left = 309.5
+offset_top = 40.0
+offset_right = 359.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "7"
 
 [node name="t8" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 107.0
-offset_right = 182.0
-offset_bottom = 165.0
+offset_left = 359.5
+offset_top = 40.0
+offset_right = 409.5
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 36
 text = "8"
 
 [node name="t9" type="CheckBox" parent="CanvasLayer/Control/hintTogglers"]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 106.0
-offset_right = 120.0
-offset_bottom = 164.0
+offset_left = 409.5
+offset_top = 40.0
+offset_right = 459.5
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 36
+text = "9"
+
+[node name="valueTogglers" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 125.5
+offset_right = 1.0
+offset_bottom = -77.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="t1v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 13.5
+offset_right = 63.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "1"
+
+[node name="t2v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 63.5
+offset_right = 113.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "2"
+
+[node name="t3v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 113.5
+offset_right = 163.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "3"
+
+[node name="t4v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 163.5
+offset_right = 213.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "4"
+
+[node name="t5v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 213.5
+offset_right = 263.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "5"
+
+[node name="t6v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 263.5
+offset_right = 313.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "6"
+
+[node name="t7v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 313.5
+offset_right = 363.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "7"
+
+[node name="t8v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 363.5
+offset_right = 413.5
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "8"
+
+[node name="t9v" type="CheckBox" parent="CanvasLayer/Control/valueTogglers"]
+layout_mode = 0
+offset_left = 413.5
+offset_right = 463.5
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 36
 text = "9"
 
 [node name="clear" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 97.5
-offset_right = 153.0
-offset_bottom = 128.5
+offset_left = 475.5
+offset_top = 49.5
+offset_right = 524.5
+offset_bottom = 80.5
 text = "Clear"
+
+[node name="clearValues" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 142.0
+offset_right = 524.0
+offset_bottom = 173.0
+text = "Clear"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 12.5
+offset_right = 86.0
+offset_bottom = 47.5
+text = "Hints:"
+label_settings = SubResource("LabelSettings_8w1r6")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 99.0
+offset_right = 105.0
+offset_bottom = 134.0
+text = "Values:"
+label_settings = SubResource("LabelSettings_8w1r6")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer" to="." method="_on_canvas_layer_visibility_changed"]
 [connection signal="focus_exited" from="CanvasLayer/Control/ColorRect" to="." method="_on_color_rect_focus_exited"]
 [connection signal="text_changed" from="CanvasLayer/Control/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="pressed" from="CanvasLayer/Control/closeBtn" to="." method="_on_close_btn_pressed"]
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t1" to="." method="_on_t_1_toggled"]
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t2" to="." method="_on_t_2_toggled"]
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t3" to="." method="_on_t_3_toggled"]
@@ -457,4 +570,14 @@ text = "Clear"
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t7" to="." method="_on_t_7_toggled"]
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t8" to="." method="_on_t_8_toggled"]
 [connection signal="toggled" from="CanvasLayer/Control/hintTogglers/t9" to="." method="_on_t_9_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t1v" to="." method="_on_t_1v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t2v" to="." method="_on_t_2v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t3v" to="." method="_on_t_3v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t4v" to="." method="_on_t_4v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t5v" to="." method="_on_t_5v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t6v" to="." method="_on_t_6v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t7v" to="." method="_on_t_7v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t8v" to="." method="_on_t_8v_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/valueTogglers/t9v" to="." method="_on_t_9v_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clearValues" to="." method="_on_clear_values_pressed"]

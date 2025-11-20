@@ -23,6 +23,8 @@ func generate_new():
 		for cell in block:
 			var cell_reference : Cell = block_reference.get_child(cell_number)
 			cell_reference.cell.value = cell
+			cell_reference.cell.block = block_number
+			cell_reference.cell.cell = cell_number
 			cell_reference.set_fixed(cell > 0)
 			cell_number += 1
 		block_number += 1 

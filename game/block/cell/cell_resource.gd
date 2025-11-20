@@ -5,3 +5,5 @@ class_name CellResource
 @export var value: int
 @export var hints: Array[bool]
 @export var fixed: bool = false
+@export var block: int
+@export var cell: int

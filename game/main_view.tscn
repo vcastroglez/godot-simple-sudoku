@@ -134,19 +134,19 @@ script = ExtResource("4_e7xr1")
 script = ExtResource("5_r5uw0")
 
 [node name="Button" type="Button" parent="."]
-offset_left = -316.0
-offset_top = 618.0
-offset_right = -238.0
-offset_bottom = 649.0
+offset_left = -335.0
+offset_top = -650.0
+offset_right = -257.0
+offset_bottom = -619.0
 scale = Vector2(3, 3)
 text = "New
 "
 
 [node name="SpinBox" type="SpinBox" parent="."]
-offset_left = 22.0
-offset_top = 611.0
-offset_right = 105.062
-offset_bottom = 642.0
+offset_left = 3.0
+offset_top = -650.0
+offset_right = 86.062
+offset_bottom = -619.0
 scale = Vector2(3, 3)
 min_value = 1.0
 max_value = 4.0
