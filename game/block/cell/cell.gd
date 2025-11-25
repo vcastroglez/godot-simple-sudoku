@@ -88,44 +88,45 @@ func _on_canvas_layer_visibility_changed() -> void:
 		value_toggler.button_pressed = has_value
 
 func _on_t_1_toggled(toggled_on: bool) -> void:
-	print(cell.hints)
 	cell.hints[0] = toggled_on
+	GameState.game_updated.emit()
 	
 func _on_t_2_toggled(toggled_on: bool) -> void:
 	cell.hints[1] = toggled_on
+	GameState.game_updated.emit()
 
 func _on_t_3_toggled(toggled_on: bool) -> void:
 	cell.hints[2] = toggled_on
-
+	GameState.game_updated.emit()
 
 func _on_t_4_toggled(toggled_on: bool) -> void:
 	cell.hints[3] = toggled_on
+	GameState.game_updated.emit()
 
 func _on_t_5_toggled(toggled_on: bool) -> void:
 	cell.hints[4] = toggled_on
 
-
 func _on_t_6_toggled(toggled_on: bool) -> void:
 	cell.hints[5] = toggled_on
-
+	GameState.game_updated.emit()
 
 func _on_t_7_toggled(toggled_on: bool) -> void:
 	cell.hints[6] = toggled_on
-
+	GameState.game_updated.emit()
 
 func _on_t_8_toggled(toggled_on: bool) -> void:
 	cell.hints[7] = toggled_on
+	GameState.game_updated.emit()
 
 func _on_t_9_toggled(toggled_on: bool) -> void:
 	cell.hints[8] = toggled_on
-
+	GameState.game_updated.emit()
 
 func _on_clear_pressed() -> void:
 	for i in range(0, hints.get_child_count()):
 		var hint_toggler : CheckBox = hint_togglers.get_child(i)
 		cell.hints[i] = false
 		hint_toggler.button_pressed = false
-
 
 func _on_clear_values_pressed() -> void:
 	cell.value = 0
@@ -174,3 +175,4 @@ func addValue(new_value):
 	if !current_value:
 		current_value = "0"
 	cell.value = int(current_value)
+	GameState.game_updated.emit()
