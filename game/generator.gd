@@ -13,11 +13,53 @@ const FIRST_COL = [0,3,6]
 const MIDDLE_COL = [1,4,7]
 const LAST_COL = [2,5,8]
 
-func _ready() -> void:
-	to_return_puzzle = get_empty_puzzle();
-	generate_sudoku(1)
+func generate_sudoku(difficulty : int) -> Array:
+	var is_good = false
+	var tries = 0
+	var solved_puzzle = []
+	while(!is_good && tries < 25):
+		to_return_puzzle = get_empty_puzzle();
+		solved_puzzle = generate_solved_sudoku()
+		is_good = is_good_puzzle(solved_puzzle)
+		tries += 1
+	solved_puzzle = hide_some(difficulty, solved_puzzle)
+	return solved_puzzle
 
-func generate_sudoku(difficulty: int) -> Array:
+func hide_some(difficulty, puzzle: Array) -> Array:
+	# Remove digits based on difficulty
+	# Difficulty 1: 35-40 clues (easy)
+	# Difficulty 2: 30-35 clues (medium)
+	# Difficulty 3: 25-30 clues (hard)
+	# Difficulty 4: 17-25 clues (very hard)
+	var min_clues = max(17, 45 - difficulty * 7)
+	var max_clues = max(20, 50 - difficulty * 7)
+	var target_clues = randi() % (max_clues - min_clues + 1) + min_clues
+	
+	var places = range(9)
+	var removed = 0
+	for i in range(81):
+		if removed > (81 - target_clues):
+			break
+		var block_number = places.pick_random()
+		var cell_number = places.pick_random()
+		if !puzzle[block_number][cell_number]:
+			continue
+			
+		puzzle[block_number][cell_number] = 0
+		removed += 1
+		if randi_range(0,1): #half symetric generator
+			puzzle[8 - block_number][8 - cell_number] = 0
+			removed += 1
+	return puzzle
+	
+func is_good_puzzle(puzzle: Array) -> bool:
+	for block in puzzle:
+		for cell in block:
+			if !cell:
+				return false
+	return true
+	
+func generate_solved_sudoku() -> Array:
 	#first we generate middle line with random numbers from 1 to 9
 	var stack = range(1,10)
 	stack.shuffle()
@@ -31,7 +73,7 @@ func generate_sudoku(difficulty: int) -> Array:
 			to_return_puzzle[block_number][cell_number] = stack[cell_number]
 		
 	#block 2 and 6
-	for block_number in [2,6,1,3,7]:
+	for block_number in [2,6,1,3,7,5,4]:
 		for y in range(9):
 			var block_possible = range(9)
 			var smaller_size = 10
@@ -44,11 +86,12 @@ func generate_sudoku(difficulty: int) -> Array:
 				block_possible[i] = possible
 				
 			var values_smaller = block_possible[smaller_index]
-			to_return_puzzle[block_number][smaller_index] = values_smaller.pick_random()
+			var value_to_assign = values_smaller.pick_random()
+			if !value_to_assign :
+				return to_return_puzzle#bad one, stop doing anything
+			to_return_puzzle[block_number][smaller_index] = value_to_assign
 	
-	print_sudoku(to_return_puzzle)
-	return []
-	
+	return to_return_puzzle
 	
 func generate_consecutive_sudoku():
 	#first we generate middle line with random numbers from 1 to 9
