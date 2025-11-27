@@ -13,6 +13,8 @@ config_version=5
 config/name="BearSudoku"
 run/main_scene="res://game/main_view.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]

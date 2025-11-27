@@ -144,4 +144,31 @@ max_value = 4.0
 value = 1.0
 custom_arrow_step = 1.0
 
+[node name="CheckBtn" type="Button" parent="."]
+offset_left = -328.0
+offset_top = -802.0
+offset_right = -253.0
+offset_bottom = -765.0
+scale = Vector2(3, 3)
+text = "Check"
+
+[node name="Hints" type="Button" parent="."]
+offset_left = 2.0
+offset_top = -800.0
+offset_right = 77.0
+offset_bottom = -763.0
+scale = Vector2(3, 3)
+text = "Hint"
+
+[node name="ClearHints" type="Button" parent="."]
+offset_left = 1.0
+offset_top = -938.0
+offset_right = 94.0
+offset_bottom = -901.0
+scale = Vector2(3, 3)
+text = "Clear Hints"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CheckBtn" to="." method="_on_check_btn_pressed"]
+[connection signal="pressed" from="Hints" to="." method="_on_hints_pressed"]
+[connection signal="pressed" from="ClearHints" to="." method="_on_clear_hints_pressed"]

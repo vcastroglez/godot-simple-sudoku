@@ -1,41 +1,19 @@
 extends Node2D
 
-@onready var generator: SudokuGenerator = $Generator
 @onready var blocks: Control = $Blocks
 @onready var spin_box: SpinBox = $SpinBox
-@onready var generator_claude: SudokuGeneratorClaude = $GeneratorClaude
-@onready var generator_github: GeneratorGithub = $GeneratorGithub
 
 var puzzle : Array
 var generator_to_use : SudokuGenerator
-var save_path = "user://puzzle.json"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generator_to_use = generator
+	GameState.init()
 	GameState.game_updated.connect(_save_game)
-	var file = FileAccess.open(save_path, FileAccess.READ)
-	if !file:
-		generate_new()
-		return
-	var to_load_puzzle = JSON.parse_string(file.get_as_text())
-	var block_number = 0
-	for block in to_load_puzzle:
-		var block_reference = blocks.get_child(block_number)
-		var cell_number = 0
-		for cell in block:
-			var cell_reference : Cell = block_reference.get_child(cell_number)
-			cell_reference.cell.value = cell.value
-			cell_reference.cell.block = block_number
-			cell_reference.cell.cell = cell_number
-			cell_reference.set_fixed(cell.fixed)
-			for i in range(9):
-				cell_reference.cell.hints[i] = cell.hints[i]
-			cell_number += 1
-		block_number += 1 
+	fill_up(GameState.get_puzzle())
 		
 	
 func _save_game():
-	var to_save = generator_to_use.get_empty_puzzle()
+	var to_save = GameState.get_empty_puzzle()
 	for block in blocks.get_children():
 		for cell : Cell in block.get_children():
 			var cell_reference : CellResource = cell.cell
@@ -43,30 +21,55 @@ func _save_game():
 				"value": cell_reference.value,
 				"hints": cell_reference.hints,
 				"fixed": cell_reference.fixed,
+				"cell": cell_reference.cell,
+				"block": cell_reference.block,
+				"status": cell_reference.status
 			}
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(to_save))
+			
+	GameState._save_game(to_save)
 	
-func generate_new():
-	var diff = spin_box.value
-	puzzle = generator_to_use.generate_sudoku(diff)
+func fill_up(puzzle):
 	var block_number = 0
 	for block in puzzle:
 		var block_reference = blocks.get_child(block_number)
-		var cell_number = 0
 		for cell in block:
-			var cell_reference : Cell = block_reference.get_child(cell_number)
-			cell_reference.cell.value = cell
-			cell_reference.cell.block = block_number
-			cell_reference.cell.cell = cell_number
-			cell_reference.set_fixed(cell > 0)
-			cell_number += 1
+			var cell_reference : Cell = block_reference.get_child(cell.cell)
+			cell_reference.cell.value = cell.value
+			cell_reference.cell.block = cell.block
+			cell_reference.cell.cell = cell.cell
+			cell_reference.cell.status = cell.status
+			cell_reference.set_fixed(cell.fixed)
 		block_number += 1 
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _on_button_pressed() -> void:
-	generate_new()
+	GameState.difficulty = int(spin_box.value)
+	GameState.generate_new()
+	fill_up(GameState.get_puzzle())
+
+
+func _on_check_btn_pressed() -> void:
+	GameState.check_value.emit()
+
+func _on_hints_pressed() -> void:
+	var block_number = 0
+	for block in blocks.get_children():
+		for cell in block.get_children():
+			var cell_reference : Cell = block.get_child(cell.cell.cell)
+			var hints = GameState.get_hints(cell.cell.block, cell.cell.cell)
+			var hint_number = 0
+			for i in cell.cell.hints:
+				cell.cell.hints[hint_number] = hints.has(hint_number + 1)
+				hint_number += 1
+		block_number += 1 
+
+func _on_clear_hints_pressed() -> void:
+	var block_number = 0
+	for block in blocks.get_children():
+		for cell in block.get_children():
+			var cell_reference : Cell = block.get_child(cell.cell.cell)
+			cell_reference.cell.hints = [false,false,false,false,false,false,false,false,false]
+		block_number += 1 

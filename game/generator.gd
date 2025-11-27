@@ -22,10 +22,13 @@ func generate_sudoku(difficulty : int) -> Array:
 		solved_puzzle = generate_solved_sudoku()
 		is_good = is_good_puzzle(solved_puzzle)
 		tries += 1
-	solved_puzzle = hide_some(difficulty, solved_puzzle)
-	return solved_puzzle
+		
+	var solved_to_return = solved_puzzle.duplicate(true)
+	var hidden_puzzle = hide_some(difficulty, solved_puzzle)
+	return [hidden_puzzle, solved_to_return]
 
-func hide_some(difficulty, puzzle: Array) -> Array:
+func hide_some(difficulty, new_puzzle: Array) -> Array:
+	var puzzle = new_puzzle
 	# Remove digits based on difficulty
 	# Difficulty 1: 35-40 clues (easy)
 	# Difficulty 2: 30-35 clues (medium)
@@ -116,12 +119,11 @@ func generate_consecutive_sudoku():
 	return to_return_puzzle;
 
 func get_possible_values(block_index : int, cell_index : int, puzzle: Array) -> Array:
-	var block = puzzle[block_index]
-	var cell = block[cell_index]
-	
+	var block : Array = puzzle[block_index]
+	var cell : int = block[cell_index]
 	var to_return = []
 	#check the block
-	for i in range(1,10):
+	for i in range(1, 10):
 		if !block.has(i):
 			to_return.push_back(i)
 			
@@ -158,12 +160,14 @@ func get_possible_values(block_index : int, cell_index : int, puzzle: Array) -> 
 	return to_return
 
 func get_empty_puzzle(fill_value := 0) -> Array:
-	var fill = []
-	fill.resize(9)
-	fill.fill(fill_value)
-	
 	var to_return = []
 	to_return.resize(9)
 	for i in range(9):
-		to_return[i] = fill.duplicate()
+		to_return[i] = get_empty_block(fill_value)
 	return to_return;
+
+func get_empty_block(fill_value = 0) -> Array:
+	var fill = []
+	fill.resize(9)
+	fill.fill(fill_value)
+	return fill

@@ -47,6 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.456335, 0.259166, 0.757985, 1)
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
@@ -336,6 +337,7 @@ grow_vertical = 2
 color = Color(0.712129, 0.712129, 0.712129, 1)
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 73.0

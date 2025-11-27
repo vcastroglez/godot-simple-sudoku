@@ -18,16 +18,47 @@ func _ready() -> void:
 	cell.hints = [false,false,false,false,false,false,false,false,false]
 	cell.fixed = false
 	var settings = LabelSettings.new()
-	settings.font_size = 30
+	settings.font_size = 33
 	settings.font_color = Color.BLACK
 	label.label_settings = settings
 	
 	GameState.cell_selected.connect(_on_cell_selected)
+	GameState.check_value.connect(_on_check_value)
 	
+func _on_check_value():
+	if cell.fixed || cell.value == 0 || cell.value > 9:
+		return
+	var solved_value = GameState.solved_puzzle[cell.block][cell.cell]
+	if cell.status != 1 && solved_value != cell.cell:
+		cell.status = 1
 	
 func _on_cell_selected(block_number, cell_number):
 	if block_number != cell.block || cell_number != cell.cell:
 		canvas_layer.visible = false
+	
+	if block_number == cell.block:
+		if cell.cell != cell_number:
+			cell.status = 2
+		else:
+			cell.status = 3
+		return
+		
+	var selected_row_col = get_row_col(block_number, cell_number)
+	var my_row_col = get_row_col(cell.block, cell.cell)
+	
+	if (selected_row_col[0] == my_row_col[0]) || (selected_row_col[1] == my_row_col[1]):
+		cell.status = 2
+	else:
+		cell.status = 0
+
+func get_row_col(block_number, cell_number):
+	var row_in_block = floor(cell_number / 3)
+	var col_in_block = cell_number % 3
+	
+	var row = floor(block_number / 3) * 3 + row_in_block
+	var col = (block_number % 3) * 3 + col_in_block
+	return [row, col]
+	
 
 func set_fixed(new_value: bool):
 	cell.fixed = new_value
@@ -42,8 +73,17 @@ func _process(delta: float) -> void:
 	else:
 		label.visible = false
 		
-	color_rect.color = Color(1,1,1,1) if cell.status == 0 else Color(1,0,0,1)
-	label.label_settings.font_color = Color(0, 0, 0, 1) if cell.fixed else Color(0.388, 0.482, 1, 1)
+	if cell.status == 0:#good
+		color_rect.color = Color(1,1,1,1) 
+	elif cell.status == 1:#bad
+		color_rect.color = Color(1,0,0,1)
+	elif cell.status == 2:#high
+		color_rect.color = Color(0.8, 0.882, 0.954)
+	else:#selected
+		color_rect.color = Color(0.615, 0.771, 0.906)
+		
+		
+	label.label_settings.font_color = Color(0, 0, 0, 1) if cell.fixed else Color(0.456, 0.259, 0.758)
 	
 	hints.visible = !label.visible
 	for i in range(0, hints.get_child_count()):
@@ -64,6 +104,7 @@ func _on_button_pressed() -> void:
 		return
 	GameState.cell_selected.emit(cell.block, cell.cell)
 	canvas_layer.visible = true
+	GameState.game_updated.emit()
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	var old_value = str(cell.value)
