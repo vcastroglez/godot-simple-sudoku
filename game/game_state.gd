@@ -32,6 +32,10 @@ func init() -> void:
 		return
 		
 	var generation = JSON.parse_string(file.get_as_text())
+	if typeof(generation[0][0]) != TYPE_ARRAY:
+		DirAccess.remove_absolute(save_path)
+		generate_new()
+		return
 	puzzle = generation[0]
 	solved_puzzle = generation[1]
 	plain_puzzle = generator.get_empty_puzzle()

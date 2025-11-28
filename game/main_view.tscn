@@ -1,23 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc0hgeurej3l3"]
+[gd_scene load_steps=6 format=3 uid="uid://cc0hgeurej3l3"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_pvmc2"]
 [ext_resource type="PackedScene" uid="uid://ceoqe83vib611" path="res://game/block/block.tscn" id="1_v3k5f"]
 [ext_resource type="PackedScene" uid="uid://b801c6kxvqcqp" path="res://game/generator.tscn" id="3_l5tyv"]
+[ext_resource type="Texture2D" uid="uid://d08wr8iq3a86k" path="res://settings.png" id="4_2mrr3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hlxbp"]
+font_size = 95
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pvmc2")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Blocks" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -504.0
-offset_top = -499.0
-offset_right = 124.0
-offset_bottom = 129.0
+offset_left = 38.9999
+offset_top = 610.0
+offset_right = 667.0
+offset_bottom = 1238.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6, 1.6)
@@ -124,51 +126,100 @@ grow_vertical = 0
 
 [node name="Generator" parent="." instance=ExtResource("3_l5tyv")]
 
-[node name="Button" type="Button" parent="."]
-offset_left = -335.0
-offset_top = -650.0
-offset_right = -257.0
-offset_bottom = -619.0
+[node name="settings" type="Button" parent="."]
+offset_left = 945.0
+offset_top = 10.0
+offset_right = 1154.0
+offset_bottom = 221.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+icon = ExtResource("4_2mrr3")
+flat = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.424, 0.424, 0.424, 0.865)
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 248.0
+offset_top = 561.0
+offset_right = 348.0
+offset_bottom = 601.0
 scale = Vector2(3, 3)
-text = "New
+text = "New Puzzle
 "
 
-[node name="SpinBox" type="SpinBox" parent="."]
-offset_left = 3.0
-offset_top = -650.0
-offset_right = 86.062
-offset_bottom = -619.0
+[node name="SpinBox" type="SpinBox" parent="CanvasLayer"]
+offset_left = 587.0
+offset_top = 560.0
+offset_right = 687.0
+offset_bottom = 600.0
 scale = Vector2(3, 3)
 min_value = 1.0
 max_value = 4.0
 value = 1.0
 custom_arrow_step = 1.0
 
-[node name="CheckBtn" type="Button" parent="."]
-offset_left = -328.0
-offset_top = -802.0
-offset_right = -253.0
-offset_bottom = -765.0
+[node name="CheckBtn" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -401.0
+offset_right = -74.0
+offset_bottom = -361.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(3, 3)
-text = "Check"
+text = "Check Puzzle"
 
-[node name="Hints" type="Button" parent="."]
-offset_left = 2.0
-offset_top = -800.0
-offset_right = 77.0
-offset_bottom = -763.0
+[node name="Hints" type="Button" parent="CanvasLayer"]
+offset_left = 266.0
+offset_top = 892.0
+offset_right = 466.0
+offset_bottom = 929.0
 scale = Vector2(3, 3)
-text = "Hint"
+text = "Show Hints"
 
-[node name="ClearHints" type="Button" parent="."]
-offset_left = 1.0
-offset_top = -938.0
-offset_right = 94.0
-offset_bottom = -901.0
+[node name="ClearHints" type="Button" parent="CanvasLayer"]
+offset_left = 266.0
+offset_top = 1055.0
+offset_right = 466.0
+offset_bottom = 1092.0
 scale = Vector2(3, 3)
 text = "Clear Hints"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CheckBtn" to="." method="_on_check_btn_pressed"]
-[connection signal="pressed" from="Hints" to="." method="_on_hints_pressed"]
-[connection signal="pressed" from="ClearHints" to="." method="_on_clear_hints_pressed"]
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -276.0
+offset_top = 44.0
+offset_right = 276.0
+offset_bottom = 199.0
+grow_horizontal = 2
+text = "Just Sudoku"
+label_settings = SubResource("LabelSettings_hlxbp")
+
+[node name="close" type="Button" parent="CanvasLayer"]
+offset_left = 266.0
+offset_top = 1205.0
+offset_right = 466.0
+offset_bottom = 1245.0
+scale = Vector2(3, 3)
+text = "Close"
+
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CheckBtn" to="." method="_on_check_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Hints" to="." method="_on_hints_pressed"]
+[connection signal="pressed" from="CanvasLayer/ClearHints" to="." method="_on_clear_hints_pressed"]
+[connection signal="pressed" from="CanvasLayer/close" to="." method="_on_close_pressed"]

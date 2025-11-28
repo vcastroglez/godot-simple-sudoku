@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var blocks: Control = $Blocks
-@onready var spin_box: SpinBox = $SpinBox
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var spin_box: SpinBox = $CanvasLayer/SpinBox
 
 var puzzle : Array
 var generator_to_use : SudokuGenerator
@@ -73,3 +74,11 @@ func _on_clear_hints_pressed() -> void:
 			var cell_reference : Cell = block.get_child(cell.cell.cell)
 			cell_reference.cell.hints = [false,false,false,false,false,false,false,false,false]
 		block_number += 1 
+
+
+func _on_settings_pressed() -> void:
+	canvas_layer.visible = true
+
+
+func _on_close_pressed() -> void:
+	canvas_layer.visible = false

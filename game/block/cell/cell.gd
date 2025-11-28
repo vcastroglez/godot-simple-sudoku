@@ -29,12 +29,17 @@ func _on_check_value():
 	if cell.fixed || cell.value == 0 || cell.value > 9:
 		return
 	var solved_value = GameState.solved_puzzle[cell.block][cell.cell]
-	if cell.status != 1 && solved_value != cell.cell:
+	if cell.status != 1 && int(solved_value) != int(cell.cell):
 		cell.status = 1
 	
 func _on_cell_selected(block_number, cell_number):
+	var cell_value = GameState.get_puzzle()[block_number][cell_number].value
 	if block_number != cell.block || cell_number != cell.cell:
 		canvas_layer.visible = false
+	
+	if int(cell_value) == int(cell.value) && int(cell_value) <= 9 && int(cell.value) <= 9:
+		cell.status = 3
+		return
 	
 	if block_number == cell.block:
 		if cell.cell != cell_number:
@@ -42,7 +47,7 @@ func _on_cell_selected(block_number, cell_number):
 		else:
 			cell.status = 3
 		return
-		
+	
 	var selected_row_col = get_row_col(block_number, cell_number)
 	var my_row_col = get_row_col(cell.block, cell.cell)
 	
@@ -100,9 +105,9 @@ func set_value(new_value: int):
 	cell.value = new_value
 
 func _on_button_pressed() -> void:
+	GameState.cell_selected.emit(cell.block, cell.cell)
 	if cell.fixed:
 		return
-	GameState.cell_selected.emit(cell.block, cell.cell)
 	canvas_layer.visible = true
 	GameState.game_updated.emit()
 
