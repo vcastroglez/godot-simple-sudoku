@@ -33,11 +33,13 @@ func _on_check_value():
 		cell.status = 1
 	
 func _on_cell_selected(block_number, cell_number):
-	var cell_value = GameState.get_puzzle()[block_number][cell_number].value
+	var cell_value = int(GameState.get_puzzle()[block_number][cell_number].value)
+	var my_value = int(cell.value)
+	
 	if block_number != cell.block || cell_number != cell.cell:
 		canvas_layer.visible = false
 	
-	if int(cell_value) == int(cell.value) && int(cell_value) <= 9 && int(cell.value) <= 9:
+	if cell_value == my_value && cell_value <= 9 && my_value <= 9 && my_value > 0 && cell_value > 0:
 		cell.status = 3
 		return
 	
@@ -221,4 +223,4 @@ func addValue(new_value):
 	if !current_value:
 		current_value = "0"
 	cell.value = int(current_value)
-	GameState.game_updated.emit()
+	GameState.game_updated.emit(cell)

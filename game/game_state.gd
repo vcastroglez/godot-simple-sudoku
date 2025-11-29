@@ -1,7 +1,7 @@
 extends Node
 
 signal cell_selected(block: int, cell: int)
-signal game_updated()
+signal game_updated(cell: CellResource)
 signal check_value()
 
 var puzzle: Array

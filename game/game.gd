@@ -13,20 +13,18 @@ func _ready() -> void:
 	fill_up(GameState.get_puzzle())
 		
 	
-func _save_game():
-	var to_save = GameState.get_empty_puzzle()
-	for block in blocks.get_children():
-		for cell : Cell in block.get_children():
-			var cell_reference : CellResource = cell.cell
-			to_save[int(cell_reference.block)][int(cell_reference.cell)] = {
-				"value": cell_reference.value,
-				"hints": cell_reference.hints,
-				"fixed": cell_reference.fixed,
-				"cell": cell_reference.cell,
-				"block": cell_reference.block,
-				"status": cell_reference.status
+func _save_game(new_cell: CellResource):
+	var to_save = GameState.get_puzzle()
+	
+	to_save[int(new_cell.block)][(new_cell.cell)] = {
+				"value": new_cell.value,
+				"hints": new_cell.hints,
+				"fixed": new_cell.fixed,
+				"cell": new_cell.cell,
+				"block": new_cell.block,
+				"status": new_cell.status
 			}
-			
+
 	GameState._save_game(to_save)
 	
 func fill_up(puzzle):
