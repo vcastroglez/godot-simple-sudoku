@@ -28,6 +28,7 @@ func _ready() -> void:
 func _on_check_value():
 	if cell.fixed || cell.value == 0 || cell.value > 9:
 		return
+		
 	var solved_value = GameState.solved_puzzle[cell.block][cell.cell]
 	if cell.status != 1 && int(solved_value) != int(cell.cell):
 		cell.status = 1
