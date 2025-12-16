@@ -30,7 +30,7 @@ func _on_check_value():
 		return
 		
 	var solved_value = GameState.solved_puzzle[cell.block][cell.cell]
-	if cell.status != 1 && int(solved_value) != int(cell.cell):
+	if int(solved_value) != int(cell.value):
 		cell.status = 1
 	
 func _on_cell_selected(block_number, cell_number):

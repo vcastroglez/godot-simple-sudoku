@@ -137,6 +137,7 @@ icon = ExtResource("4_2mrr3")
 flat = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="TextureRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
